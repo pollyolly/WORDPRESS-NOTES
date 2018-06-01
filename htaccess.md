@@ -1,7 +1,88 @@
 ##### BEGIN WP-ADMIN #####
+AuthName "Admins Only"
+AuthUserFile /etc/apache2/.htpasswd
+# .htpasswd contains the format below
+# my-username:my-password
+AuthGroupFile /dev/null
+AuthType Basic
+#user name
+require user updilc2017
+
+Order deny,allow
+Allow from 202.92.135.157
+Allow from 202.92.135.158
+Deny from all
+
+<Files admin-ajax.php>
+    Order allow,deny
+    Allow from all
+    Satisfy any 
+</Files>
+
+<Files admin-post.php>
+  Order allow,deny
+  Allow from all
+  Satisfy any
+</Files>
+
+<Files "\.(css|gif|png|js)$">
+  Order allow,deny
+  Allow from all
+  Satisfy any
+</Files>
+
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</Files>
 ##### END WP-ADMIN #####
 
 ##### BEGIN WP SECURITY #####
+ServerSignature Off
+LimitRequestBody 10240000
+ErrorDocument 401 default
+#ACCESS DENIED ON FILES
+<files wp-config.php>
+Order allow,deny
+Deny from all
+</files>
+
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+Order allow,deny
+Deny from all
+Satisfy all
+</Files>
+
+<FilesMatch "(async-upload\.php|wp-cron\.php|xmlrpc\.php)$">
+Satisfy Any
+Order allow,deny
+Allow from all
+Deny from none
+</FilesMatch>
+
+
+<Files xmlrpc.php>
+Order deny,allow
+Allow from 202.92.135.157
+Allow from 202.92.135.158
+Deny from all
+</Files>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^index\.php$  - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+php_value upload_max_filesize 1M
+php_value post_max_size 1M
+php_value max_execution_time 300
+php_value max_input_time 300
+</IfModule>
 ##### END WP SECURITY #####
 
 ##### BEGIN BROWSER CACHING #####
