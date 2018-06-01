@@ -1,3 +1,4 @@
+<?php
 /* WP CONFIG */
 
 //define('FORCE_SSL_LOGIN', true);

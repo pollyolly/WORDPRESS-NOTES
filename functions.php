@@ -1,3 +1,4 @@
+<?php
 /* MOVE SCRIPTS & CSS TO BOTTOM AND TOP */
 add_action( 'wp_enqueue_scripts', 'my_theme_js');
 function my_theme_js() {
