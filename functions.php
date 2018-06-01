@@ -1,4 +1,4 @@
-##### MOVE SCRIPTS & CSS TO BOTTOM AND TOP #####
+/* MOVE SCRIPTS & CSS TO BOTTOM AND TOP */
 add_action( 'wp_enqueue_scripts', 'my_theme_js');
 function my_theme_js() {
    remove_action('wp_head', 'wp_print_scripts');
@@ -17,7 +17,7 @@ function my_theme_js() {
    wp_enqueue_script('my-jsscript');
 }
 
-##### ADD CUSTOM IMAGE SIZE #####
+/* ADD CUSTOM IMAGE SIZE */
 add_action( 'after_setup_theme', 'custom_imagesize' );
 function custom_imagesize() {
     add_image_size( "ilcimage-size", 865, 9999 ); // 865 px wide (and max 9999 height)
@@ -30,7 +30,7 @@ function ilc_imagecustom_sizes( $sizes ) {
 	'ilcfeatured-image-size' => __( 'ilc featured-image size' ),
     ) );
 }
-##### WP SECURITY MEASURES #####
+/* WP SECURITY MEASURES */
 function remove_version() {
  return '';
  }
@@ -41,7 +41,7 @@ function remove_version() {
  }
  add_filter('login_errors', 'wrong_login');
 
-##### CHANGE LOGIN LOGO #####
+/* CHANGE LOGIN LOGO */
 function my_login_logo() { 
 ?>
     <style type="text/css">
@@ -56,18 +56,18 @@ function my_login_logo() {
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
-#### CHANGE WP LOGIN URL #####
+/* CHANGE WP LOGIN URL */
 function my_login_logo_url() {
     return home_url();
 }
 add_filter( 'login_headerurl', 'my_login_logo_url' );
-#### CHANGE ELIPSIS #####
+/* CHANGE ELIPSIS */
 function change_excerpt_elipsis($post){
   return '<a rel="nofollow" href="'. get_permalink($post->ID) . '" target="_blank">' . '  Read more...' . '</a>';;
 }
 add_filter('excerpt_more', 'change_excerpt_elipsis');
 
-##### META TAGS #####
+/* META TAGS */
 add_action('ogmeta_tags', 'add_metatags');
 function add_metatags(){
 

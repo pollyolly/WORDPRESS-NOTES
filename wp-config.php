@@ -1,4 +1,4 @@
-##### WP CONFIG #####
+/* WP CONFIG */
 
 //define('FORCE_SSL_LOGIN', true);
 //define('FORCE_SSL_ADMIN', true);
