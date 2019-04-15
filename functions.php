@@ -96,6 +96,105 @@ function add_metatags(){
 <?php
  }
 }
+
+//Creating default menu on theme activation
+add_action('after_switch_theme', 'theme_default_menu');
+function theme_default_menu(){
+     $theme_name = get_current_theme();
+
+     if($theme_name === 'Twenty Seventeen') {
+//Create menu
+          $menuLocation = 'top';
+          $menuName = 'Personal menu';
+          $localMenu = wp_get_nav_menu_object($menuName);
+	  if(!$localMenu){
+
+               $menu_id = wp_create_nav_menu($menuName);
+	       $bioPage = get_page_by_title('Bio', 'OBJECT', 'page');
+	       $coursePage = get_page_by_title('Courses', 'OBJECT', 'page');
+	       $publicationsPage = get_page_by_title('Publications', 'OBJECT', 'page');
+               wp_update_nav_menu_item($menu_id, 0, array(
+                    'menu-item-title' => 'Bio',
+  	            'menu-item-classes' => 'bio',
+	            'menu-item-object-id' => $bioPage->ID,
+                    'menu-item-url' => home_url( '/bio/' ),
+                    'menu-item-status' => 'publish'));
+
+    		wp_update_nav_menu_item($menu_id, 0, array(
+        	    'menu-item-title' =>  __('Courses', 'textdomain'),
+		    'menu-item-classes' => 'courses',
+		    'menu-item-object-id' => $coursePage->ID,
+        	    'menu-item-url' => home_url( '/courses/' ),
+        	    'menu-item-status' => 'publish'));
+
+    		wp_update_nav_menu_item($menu_id, 0, array(
+	            'menu-item-title' =>  __('Publications', 'textdomain'),
+		    'menu-item-classes' => 'publications',
+		    'menu-item-object-id' => $publicationsPage->ID,
+	            'menu-item-url' => home_url( '/publications/' ),
+	            'menu-item-status' => 'publish'));
+
+                if( !has_nav_menu( $menuLocation ) ){
+                      $locations = get_theme_mod('nav_menu_locations');
+                      $locations[$menuLocation] = $menu_id;
+                      set_theme_mod( 'nav_menu_locations', $locations );
+		}
+	   }
+//Create page
+	   $check_bio_exists = get_page_by_title('Bio', 'OBJECT', 'page');
+	   $check_courses_exists = get_page_by_title('Courses', 'OBJECT', 'page');
+	   $check_publications_exists = get_page_by_title('Publications', 'OBJECT', 'page');
+
+           if(empty($check_bio_exists)){
+
+                 $page_id = wp_insert_post(
+                      array(
+                           'comment_status' => 'close',
+                           'ping_status'    => 'close',
+                           'post_author'    => 1,
+                           'post_title'     => ucwords('Bio'),
+                           'post_name'      => strtolower(str_replace(' ', '-', trim('Bio'))),
+                           'post_status'    => 'publish',
+                           'post_content'   => 'Your Bio/CV detail should be here.',
+                           'post_type'      => 'page',
+                           'post_parent'    => ''
+                      )
+                 ); 
+	   }
+	  if(empty($check_courses_exists)){
+
+                 $page_id = wp_insert_post(
+                      array(
+                           'comment_status' => 'close',
+                           'ping_status'    => 'close',
+                           'post_author'    => 1,
+                           'post_title'     => ucwords('Courses'),
+                           'post_name'      => strtolower(str_replace(' ', '-', trim('Courses'))),
+                           'post_status'    => 'publish',
+                           'post_content'   => 'Your cousres detail should be here.',
+                           'post_type'      => 'page',
+                           'post_parent'    => ''
+                      )
+                 ); 
+	  }
+	  if(empty($check_publications_exists)){
+
+                 $page_id = wp_insert_post(
+                      array(
+                           'comment_status' => 'close',
+                           'ping_status'    => 'close',
+                           'post_author'    => 1,
+                           'post_title'     => ucwords('Publications'),
+                           'post_name'      => strtolower(str_replace(' ', '-', trim('Publications'))),
+                           'post_status'    => 'publish',
+                           'post_content'   => 'Your publications detail should be here.',
+                           'post_type'      => 'page',
+                           'post_parent'    => ''
+                      )
+                 ); 
+           } 
+      }
+}
 ?>
 
 
