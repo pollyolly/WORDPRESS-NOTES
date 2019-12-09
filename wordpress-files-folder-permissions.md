@@ -1,3 +1,6 @@
+#Recommended wordpress permissio setup
+#After installation of plugins
+
 #all php files will be readonly, (note php files in readonly can execute script but in readonly means you cannot write directly to php file ie. adding code from command.)
 ```
 sudo find . -type f -exec chmod 644 {} +
