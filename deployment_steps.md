@@ -1,15 +1,17 @@
-1. Update the apache config for the wordpress folder.
+1. Disable the caching plugin and re-enable after the deployment process.
 
-2. Double check the plugins if still supported.
+2. Update the apache config for the wordpress folder.
 
-3. Migrate the Upload files inside the wp-content.
+3. Double check the plugins if still supported.
 
-4. Check the page content if updated and no fixes needed.
+4. Migrate the Upload files inside the wp-content.
 
-5. Update static url. Note you may use trailing slash "/" so that the baseURL is automatically added.
+5. Check the page content if updated and no fixes needed.
+
+6. Update static url. Note you may use trailing slash "/" so that the baseURL is automatically added.
 ```
   i.e 
       /About
       /ContactUs
 ```
-6. Update the base url in the database using SQL query or a plugin i.e Search and Replace.
+7. Update the base url in the database using SQL query or a plugin i.e Search and Replace.
