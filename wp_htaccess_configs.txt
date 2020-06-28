@@ -1,4 +1,4 @@
-##### BEGIN WP-ADMIN #####
+##### BEGIN WP-ADMIN PROTECTION #####
 AuthName "Admins Only"
 AuthUserFile /etc/apache2/.htpasswd
 # .htpasswd contains the format below
@@ -36,9 +36,9 @@ Deny from all
     Deny from all
     Satisfy all
 </Files>
-##### END WP-ADMIN #####
+##### END WP-ADMIN PROTECTION #####
 
-##### BEGIN WP SECURITY #####
+##### BEGIN WP HOSTING SECURITY #####
 ServerSignature Off
 LimitRequestBody 10240000
 ErrorDocument 401 default
@@ -83,9 +83,9 @@ php_value post_max_size 1M
 php_value max_execution_time 300
 php_value max_input_time 300
 </IfModule>
-##### END WP SECURITY #####
+##### END WP HOSTING SECURITY #####
 
-##### BEGIN BROWSER CACHING #####
+##### BEGIN WP BROWSER CACHING #####
 # BEGIN W3TC Browser Cache
 <IfModule mod_mime.c>
     AddType text/css .css
@@ -234,5 +234,5 @@ php_value max_input_time 300
     </IfModule>
 </FilesMatch>
 # END W3TC Browser Cache
-##### END BROWSER CACHING #####
+##### END WP BROWSER CACHING #####
 
