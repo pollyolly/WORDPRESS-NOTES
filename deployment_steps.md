@@ -1,8 +1,8 @@
-1. Disable the caching plugin and re-enable after the deployment process.
+1. Update the apache config for the wordpress folder.
 
-2. Update the apache config for the wordpress folder.
+2. Disable the caching plugin and re-enable after the deployment process.
 
-3. Double check the plugins if still supported.
+3. Double check the plugins if still supported. Deactivate by changing the folder name of the plugin. i.e deactivate_pluginname
 
 4. Migrate the Upload files inside the wp-content.
 
