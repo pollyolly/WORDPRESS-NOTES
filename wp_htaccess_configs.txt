@@ -1,11 +1,15 @@
 ##### BEGIN WP-ADMIN PROTECTION #####
+
+# /etc/apache2/.htpasswd contains the format below
+# my-username:my-password
+#updilc2017:$apr1$kICN10z7$Stzgp9a/KCE5PHCeLDMT51
+
 AuthName "Admins Only"
 AuthUserFile /etc/apache2/.htpasswd
-# .htpasswd contains the format below
-# my-username:my-password
 AuthGroupFile /dev/null
 AuthType Basic
-#user name
+
+#username
 require user updilc2017
 
 Order deny,allow
