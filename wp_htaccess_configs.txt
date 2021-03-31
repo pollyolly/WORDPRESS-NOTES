@@ -7,7 +7,6 @@
 
 AuthName "Admins Only"
 AuthUserFile /etc/apache2/.htpasswd
-AuthGroupFile /dev/null
 AuthType Basic
 
 #username
