@@ -6,3 +6,8 @@ Reset admin password
 UPDATE `wp_users` SET `user_pass` = MD5( 'new_password' ) WHERE `wp_users`.`user_login` = "admin_username";
 ```
 3. Now, access the wp-login.php in the url.
+
+Reset Woocommerce / Remove all data, products, orders 
+```
+define( 'WC_REMOVE_ALL_DATA', true ); //wpconfig
+```
