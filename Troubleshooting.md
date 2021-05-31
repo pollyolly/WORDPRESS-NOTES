@@ -11,3 +11,7 @@ Reset Woocommerce / Remove all data, products, orders
 ```
 define( 'WC_REMOVE_ALL_DATA', true ); //wpconfig
 ```
+Fix Slow Elementor Page Editor
+```
+define( 'WP_MEMORY_LIMIT', '256M' );//Add memory limit
+```
