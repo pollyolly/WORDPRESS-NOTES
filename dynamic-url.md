@@ -1,3 +1,4 @@
+wp-config.php
 ```
 /* That's all, stop editing! Happy blogging. */
 /** Absolute path to the WordPress directory. */
