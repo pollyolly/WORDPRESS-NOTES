@@ -1,6 +1,6 @@
-Slow elementor page editor
+Slow Elementor Page editor
 ```
-define( 'WP_MEMORY_LIMIT', '256M' );
+define( 'WP_MEMORY_LIMIT', '256M' );//Add memory limit
 ```
 Elementor CSS not updated
 ```
