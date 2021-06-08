@@ -5,7 +5,7 @@ wp-config.php
 if ( !defined('ABSPATH') )
 define('ABSPATH', dirname(__FILE__) . '/');
 /* THIS IS CUSTOM CODE CREATED AT ZEROFRACTAL TO MAKE SITE ACCESS DYNAMIC */
-$currenthost = "http://".$_SERVER['HTTP_HOST'];
+$currenthost = "https://".$_SERVER['HTTP_HOST'];
 $currentpath = preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME']));
 $currentpath = preg_replace('/\/wp.+/','',$currentpath);
 define('WP_HOME',$currenthost.$currentpath);
