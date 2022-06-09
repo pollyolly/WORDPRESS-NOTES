@@ -1,0 +1,26 @@
+Via Remote and Local hosts
+
+1. Set computer hosts file to 10.89.12.7 google.com
+2. Create site config
+   $touch /etc/apache/site-enable/001-google.com.conf
+3. Set /etc/apache/site-enable/001-google.com.conf
+<VirtualHost *:80>
+        ServerName google.com
+        ServerAlias google.com
+        DocumentRoot /var/www/html/mywebsite/
+
+        #Redirect permanent "/" "https://google.com/"
+
+        <Directory /var/www/html/mywebsite>
+            #Options -Indexes +FollowSymlinks +MultiViews
+            AllowOverride All #important to read .htaccess
+            Require all granted 
+        </Directory>
+        
+</VirtualHost>
+4. Enable Rewrite mod-rewrite
+   $sudo a2enmod rewrite
+5. Update wp-config.php
+   define( 'WP_HOME', 'http://google.com' );
+   define( 'WP_SITEURL', 'http://google.com' );
+   
