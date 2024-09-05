@@ -156,6 +156,9 @@ define( 'DISALLOW_FILE_EDIT', true );
 ```nginx
 location = /xmlrpc.php {
     deny all;
+    access_log off;
+    log_not_found off;
+    return 403;
 }
 ```
 - deny accessing php files in a folder
