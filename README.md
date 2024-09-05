@@ -116,7 +116,7 @@ server {
 }
 ```
 ### Security Settings
-
+- make sure you have right [folder permissions](https://github.com/pollyolly/WORDPRESS-NOTES/blob/master/wordpress-files-folder-permissions.md)
 - always update to latest version
 - use wp-login [Login Recaptcha](https://wordpress.org/plugins/login-recaptcha/)
 - use wp-config [Generate Salt](https://api.wordpress.org/secret-key/1.1/salt/)
