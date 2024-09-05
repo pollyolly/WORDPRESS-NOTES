@@ -1,6 +1,6 @@
-### WORDPRESS NOTES
+## WORDPRESS NOTES
 
-### Nginx
+### Nginx and WP Super Cache
 ```nginx
 server {
     gzip on;
@@ -89,7 +89,7 @@ server {
 	#location / {
         #	try_files $uri $uri/ /index.php?$args;
 	#}
-
+        # THIS NEEDS TO BE AT THE BOTTOM BEFORE OTHER PHP CONFIGS
         location ~ \.php$ {
 		#fastcgi_split_path_info ^(/wp_hotel_booking)(/.*)$; #subdirectory
                 #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
@@ -113,5 +113,63 @@ server {
         	access_log off;
     	}
 	#End WP Super Cache
+}
+```
+### Security Settings
+
+- always update to latest version
+- use wp-login [Login Recaptcha](https://wordpress.org/plugins/login-recaptcha/)
+- use wp-config [Generate Salt](https://api.wordpress.org/secret-key/1.1/salt/)
+- restrict access to .config files and .htaccess
+```nginx
+## Disable .htaccess and other hidden files; Allow .well-known for letsencrypt
+   location ~ /\.well-known { 
+    allow all;
+    }
+   location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+```
+- use [Lets Encrypt](https://certbot.eff.org/) or [Cloudflare SSL](https://www.cloudflare.com/application-services/products/ssl/)
+- clean URL using Permalinks: %category%/%postname%
+- hide wp-login url using [WPS Hide](https://wordpress.org/plugins/wps-hide-login/)
+- use logs user activity using [WP Activity Log](https://wordpress.org/plugins/wp-security-audit-log/)
+- disable php error reporting
+```php
+<?php
+error_reporting(0);
+@ini_set(‘display_errors’, 0);
+```
+- turn off debugging
+```php
+<?php
+define( 'DISALLOW_FILE_EDIT', true );
+```
+- turn off file editing
+```php
+<?php
+define( 'DISALLOW_FILE_EDIT', true );
+```
+- deny accessing xmlrpc
+```nginx
+location = /xmlrpc.php {
+    deny all;
+}
+```
+- deny accessing php files in a folder
+```nginx
+location ~* (/wp-content/.*\.php$|/wp-includes/.*\.php$|/xmlrpc\.php$|/(?:uploads|files)/.*\.php$|/\.ht|^/\.user\.ini) {
+            deny all;
+            access_log off;
+            log_not_found off;
+        }
+```
+- allow single IP Address to access wp-login (only for static IP's)
+```nginx
+location ~ ^/(wp-admin|wp-login\.php) {
+                allow 1.2.3.4;
+                deny all;
 }
 ```
