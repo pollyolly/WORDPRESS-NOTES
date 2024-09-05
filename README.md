@@ -176,3 +176,5 @@ location ~ ^/(wp-admin|wp-login\.php) {
                 deny all;
 }
 ```
+### Security Scanner
+[WPScan](https://github.com/wpscanteam/wpscan)
