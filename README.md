@@ -1,5 +1,22 @@
 ## WORDPRESS NOTES
-
+### Redirection from Main to Subdomain
+```nginx
+server {
+        listen 80;
+        server_name iwebitechnology.xyz www.iwebitechnology.xyz;
+        return 301 https://portfolio.iwebitechnology.xyz$request_uri;
+	#server_name _;
+ 	#return 301 https://$host$request_uri;
+        #location / {
+        #       try_files $uri $uri/ =404;
+        #}
+}
+server {
+        listen 443;
+        server_name iwebitechnology.xyz www.iwebitechnology.xyz;
+        return 301 https://portfolio.iwebitechnology.xyz$request_uri;
+}
+```
 ### Nginx and WP Super Cache
 ```nginx
 server {
