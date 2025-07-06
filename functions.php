@@ -21,14 +21,14 @@ function my_theme_js() {
 /* ADD CUSTOM IMAGE SIZE */
 add_action( 'after_setup_theme', 'custom_imagesize' );
 function custom_imagesize() {
-    add_image_size( "ilcimage-size", 865, 9999 ); // 865 px wide (and max 9999 height)
-    add_image_size( "ilcfeatured-image-size", 368);
+    add_image_size( "image-size", 865, 9999 ); // 865 px wide (and max 9999 height)
+    add_image_size( "featured-image-size", 368);
 }
-add_filter( 'image_size_names_choose', 'ilc_imagecustom_sizes' );
-function ilc_imagecustom_sizes( $sizes ) {
+add_filter( 'image_size_names_choose', 'imagecustom_sizes' );
+function imagecustom_sizes( $sizes ) {
     return array_merge( $sizes, array(
-        'ilcimage-size' => __( 'ILC Image size' ),
-	'ilcfeatured-image-size' => __( 'ilc featured-image size' ),
+        'image-size' => __( 'Image size' ),
+	'featured-image-size' => __( 'featured-image size' ),
     ) );
 }
 /* WP SECURITY MEASURES */
